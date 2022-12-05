@@ -1,0 +1,14 @@
+div {
+    padding: 30px;
+    margin: 0 auto;
+    border-bottom: 10px solid blue;
+    border-right: 10px solid aqua;
+    border-left: 10px solid blueviolet;
+    border-top: 10px solid lawngreen;
+    width: 800px;
+}
+
+p {
+    border: 5px dotted darkred;
+    font-size: 20px;
+}

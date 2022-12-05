@@ -134,3 +134,28 @@ end if;
 END//
 
 DELIMITER ;
+
+delimiter //
+drop procedure if exists sp_themcongviecNhieuGiaoVien;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_themcongviecNhieuGiaoVien`(
+in pMaGV varchar(300)
+)
+BEGIN
+    -- Kiểm tra dữ liệu nhập vào của bảng công việc
+    -- Các bạn thêm vào bảng công việc ở đây
+    set @lenghtCount = LENGTH(pMaGV) - LENGTH(replace(pMaGV, ',', '')) +1;
+    set @item = 0;
+	CREATE TEMPORARY TABLE if not exists tb_giaovien  (
+		MaGV varchar(3)
+    );
+    while @item < @lenghtCount do
+		set @valueMaGV = SUBSTR(pMaGV, 1 + 4*@item, 3);
+        set @item = @item+1;
+        -- Các bạn thêm vào bảng tham gia đề tài ở đây
+		insert into `tb_giaovien`(MaGV) values (@valueMaGV);
+	end while;
+    select * from tb_giaovien;
+    drop table tb_giaovien;
+END //
+
+Delimiter ;
