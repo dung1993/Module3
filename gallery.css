@@ -1,0 +1,29 @@
+h2 {
+    margin: 20px 0;
+}
+
+h4 {
+    margin: 20px 0;
+}
+.responsive {
+    padding: 0 15px;
+    float: left;
+}
+
+.responsive .gallery {
+    border: 1px solid #ccc;
+}
+.responsive .gallery img {
+    width: 100%;
+    height: auto
+}
+
+.responsive .gallery .desc {
+    padding: 20px;
+    text-align: center;
+}
+
+.text {
+    padding: 0;
+    margin: 20px 0;
+}
