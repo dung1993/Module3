@@ -14,9 +14,10 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Fullname</th>
-            <th scope="col">Address</th>
-            <th scope="col">Country</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Brand Name</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -25,8 +26,9 @@
             <tr>
                 <th scope="row">${customer.getId()}</th>
                 <td>${customer.getName()}</td>
-                <td>${customer.getAddress()}</td>
-                <td>${customer.getCountry()}</td>
+                <td>${customer.getPrice()}</td>
+                <td>${customer.getQuantity()}</td>
+                <td>${customer.getbrandName()}</td>
                 <td><a href="/customers?action=create"><i class="fa fa-add"></i></a>
                     <a href="/customers?action=edit&id=${customer.getId()}"><i class="fa fa-edit"></i> </a>
                     <a href="/customer?action=remove&id=${customer.getId()}"><i class="fa fa-remove"></i></a></td>
