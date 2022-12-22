@@ -2,7 +2,7 @@ package ServletRequest.Request.customermanager.service.jdbc;
 
 
 
-import ServletRequest.Request.customermanager.model.Customer;
+
 import ServletRequest.Request.customermanager.model.Product;
 import ServletRequest.Request.customermanager.service.IProductService;
 
@@ -21,7 +21,7 @@ public class ProductServiceJDBC extends DatabaseContext implements IProductServi
     private static final String SELECT_PRODUCTS_BY_KW_ALL_BRAND = "SELECT * FROM `product` where `name` like ?;";
     private static final String SELECT_PRODUCTS_BY_KW_ALL_BRAND_PAGGING = "SELECT SQL_CALC_FOUND_ROWS * FROM `product` where `name` like ? limit ? offset ?;";
     private static final String SELECT_PRODUCTS_BY_KW_ID_BRAND_PAGGING = "SELECT SQL_CALC_FOUND_ROWS * FROM `product` where idBrand = ? and `name` like ? limit ? offset ? ;";
-    private static final String UPDATE_PRODUCT = "UPDATE `product` SET `name` = ? ,`price` = ? ,`idBrand` = ?  WHERE `id` = ?;";
+    private static final String UPDATE_PRODUCT = "UPDATE `product` SET `name` = ? ,`price` = ? ,`quantity` = ?,`idBrand` = ?  WHERE `id` = ?;";
 
     private int noOfRecords;
     @Override
@@ -170,15 +170,15 @@ public class ProductServiceJDBC extends DatabaseContext implements IProductServi
 
     @Override
     public void updateProduct(Product product) {
-        //UPDATE_CUSTOMER = "UPDATE `customer` SET `name` = ? ,`price` = ? ,`idBrand` = ?  WHERE `id` = ?;";
+        //UPDATE_CUSTOMER = "UPDATE `customer` SET `name` = ? ,`price` = ?, `quantity` = ? ,`idBrand` = ?  WHERE `id` = ?;";
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);
             preparedStatement.setString(1,product.getName());
             preparedStatement.setBigDecimal(2,product.getPrice());
-
-            preparedStatement.setLong(3,product.getIdBrand());
-            preparedStatement.setLong(4,product.getId());
+            preparedStatement.setInt(3,product.getQuantity());
+            preparedStatement.setLong(4,product.getIdBrand());
+            preparedStatement.setLong(5,product.getId());
 
 
             System.out.println(this.getClass() + " update customer: " + preparedStatement);

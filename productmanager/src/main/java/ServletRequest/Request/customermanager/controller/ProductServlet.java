@@ -3,7 +3,6 @@ package ServletRequest.Request.customermanager.controller;
 import ServletRequest.Request.customermanager.exception.BrandInvalidException;
 import ServletRequest.Request.customermanager.model.Brand;
 import ServletRequest.Request.customermanager.model.Country;
-import ServletRequest.Request.customermanager.model.Customer;
 import ServletRequest.Request.customermanager.model.Product;
 import ServletRequest.Request.customermanager.service.IBrandService;
 import ServletRequest.Request.customermanager.service.IProductService;
@@ -111,7 +110,6 @@ public class ProductServlet extends HttpServlet {
         req.setAttribute("products", products);
 
 
-
         int noOfRecords = productService.getNoOfRecords();
 
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / numberOfPage);
@@ -200,24 +198,21 @@ public class ProductServlet extends HttpServlet {
 
 
         validateIdView(errors, req, product);
-        validateNameView(errors,req,product);
-        validatePriceView(errors,req,product);
-        validateQuantity(errors,req,product);
+        validateNameView(errors, req, product);
+        validatePriceView(errors, req, product);
+        validateQuantity(errors, req, product);
         validateBrandView(errors, req, product);
 
-        RequestDispatcher requestDispatcher;
+
         if (errors.isEmpty()) {
             productService.updateProduct(product);
-            req.setAttribute("index", productService.getAllProducts());
-            requestDispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/index.jsp");
-        } else {
-            req.setAttribute("errors", errors);
-            req.setAttribute("index", product);
-            requestDispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/edit.jsp");
+            resp.sendRedirect("/products");
+            return;
         }
+        req.setAttribute("errors", errors);
+        req.setAttribute("products", product);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/edit.jsp");
         requestDispatcher.forward(req, resp);
-
-
     }
 
     private boolean validateIdView(List<String> errors, HttpServletRequest req, Product product) {
@@ -269,7 +264,7 @@ public class ProductServlet extends HttpServlet {
                 return;
             }
             quantity = Integer.parseInt(param);
-            if (quantity==0) {
+            if (quantity == 0) {
                 errors.add("quantity is > 0");
             }
         } catch (NumberFormatException numberFormatException) {
