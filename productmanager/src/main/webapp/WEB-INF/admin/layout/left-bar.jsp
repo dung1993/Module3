@@ -17,7 +17,7 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="index1.jsp">List Product</a>
+                            <a href="/products">List Product</a>
                         </li>
                     </ul>
                 </li>
@@ -49,10 +49,10 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="/products">Log In</a>
+                            <a href="/login">Log In</a>
                         </li>
                         <li>
-                            <a href="/login">Log Out</a>
+                            <a href="/logout">Log Out</a>
                         </li>
                     </ul>
                 </li>
